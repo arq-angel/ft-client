@@ -5,7 +5,7 @@ import useForm from "../hooks/useForm.js";
 import { loginUser } from "../helpers/axiosHelper.js";
 import { toast } from "react-toastify";
 import { useUser } from "../context/UserContext.jsx";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const initialState = {
@@ -14,6 +14,7 @@ const initialState = {
 };
 
 const LoginForm = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -45,6 +46,7 @@ const LoginForm = () => {
   ];
 
   const handleOnSubmit = async (e) => {
+    setIsSubmitting(true);
     e.preventDefault();
 
     const pendingResponse = loginUser(form);
@@ -57,6 +59,7 @@ const LoginForm = () => {
     toast[status](message);
     setUser(user);
     localStorage.setItem("accessJWT", accessJWT);
+    setIsSubmitting(false);
   };
 
   return (
@@ -73,7 +76,7 @@ const LoginForm = () => {
           ))}
 
         <div className="d-grid">
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" disabled={isSubmitting}>
             Submit
           </Button>
         </div>

@@ -5,6 +5,7 @@ import useForm from "../hooks/useForm.js";
 import { postNewTransaction } from "../helpers/axiosHelper.js";
 import { toast } from "react-toastify";
 import { useUser } from "../context/UserContext.jsx";
+import { useState } from "react";
 
 const initialState = {
   type: "",
@@ -14,6 +15,8 @@ const initialState = {
 };
 
 const TransactionForm = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const { form, setForm, handleOnChange } = useForm(initialState);
   const { getTransactions, toggleModal } = useUser();
 
@@ -45,6 +48,7 @@ const TransactionForm = () => {
   ];
 
   const handleOnSubmit = async (e) => {
+    setIsSubmitting(true);
     e.preventDefault();
 
     const { status, message } = await postNewTransaction(form);
@@ -60,6 +64,8 @@ const TransactionForm = () => {
       // close the modal
       toggleModal(false);
     }
+
+    setIsSubmitting(false);
   };
 
   return (
@@ -85,7 +91,7 @@ const TransactionForm = () => {
           ))}
 
         <div className="d-grid">
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" disabled={isSubmitting}>
             Submit
           </Button>
         </div>

@@ -4,6 +4,7 @@ import CustomInput from "./CustomInput";
 import { toast } from "react-toastify";
 import { postNewUser } from "../helpers/axiosHelper";
 import useForm from "../hooks/useForm.js";
+import { useState } from "react";
 
 const initialState = {
   name: "",
@@ -13,6 +14,8 @@ const initialState = {
 };
 
 const SignUpForm = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const { form, setForm, handleOnChange } = useForm(initialState);
 
   const fields = [
@@ -51,6 +54,7 @@ const SignUpForm = () => {
   ];
 
   const handleOnSubmit = async (e) => {
+    setIsSubmitting(true);
     e.preventDefault();
 
     const { confirmPassword, ...rest } = form;
@@ -64,6 +68,7 @@ const SignUpForm = () => {
     toast[status](message);
 
     status === "success" && setForm(initialState);
+    setIsSubmitting(false);
   };
 
   return (
@@ -80,7 +85,7 @@ const SignUpForm = () => {
           ))}
 
         <div className="d-grid">
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" disabled={isSubmitting}>
             Submit
           </Button>
         </div>
