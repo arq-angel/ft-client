@@ -1,7 +1,7 @@
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
-import Login from "./pages/Login.jsx";
+import Login from "./Login.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Transaction from "./pages/Transaction.jsx";
