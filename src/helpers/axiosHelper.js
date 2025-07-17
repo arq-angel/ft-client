@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const rootApiEp = "http://localhost:8000/api/v1";
+const rootApiEp = import.meta.env.VITE_ROOT_API + "/api/v1";
 
 export const getAccessJWT = () => {
   return localStorage.getItem("accessJWT");
@@ -52,6 +52,46 @@ export const getUser = () => {
     headers: {
       Authorization: getAccessJWT(),
     },
+  };
+  return apiProcessor(obj);
+};
+
+// transaction api calls
+
+// post new transaction
+export const postNewTransaction = (data) => {
+  const obj = {
+    method: "post",
+    url: rootApiEp + "/transactions",
+    headers: {
+      Authorization: getAccessJWT(),
+    },
+    data,
+  };
+  return apiProcessor(obj);
+};
+
+// fetch all transactions for the specific user
+export const fetchTransactions = () => {
+  const obj = {
+    method: "get",
+    url: rootApiEp + "/transactions",
+    headers: {
+      Authorization: getAccessJWT(),
+    },
+  };
+  return apiProcessor(obj);
+};
+
+// delete all selected transactions
+export const deleteTransactions = (data) => {
+  const obj = {
+    method: "delete",
+    url: rootApiEp + "/transactions",
+    headers: {
+      Authorization: getAccessJWT(),
+    },
+    data,
   };
   return apiProcessor(obj);
 };

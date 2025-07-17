@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { IoIosCreate } from "react-icons/io";
 import { HiOutlineLogin } from "react-icons/hi";
@@ -10,9 +10,10 @@ import { MdDashboard } from "react-icons/md";
 import { CiBank } from "react-icons/ci";
 
 import { useUser } from "../../context/UserContext.jsx";
+import { useState } from "react";
 
 const Header = () => {
-  const navigate = useNavigate();
+  const [showMenu, setShowMenu] = useState(false);
   const { user, setUser } = useUser();
 
   const handleOnLogout = () => {
@@ -21,24 +22,39 @@ const Header = () => {
 
     // 2. remove user from the state
     setUser({});
-
-    // 3. redirect to the login page
-    navigate("/login");
+    setShowMenu(false);
   };
 
   return (
-    <Navbar expand="lg" variant="dark" className="bg-body-dark">
+    <Navbar
+      expand="lg"
+      variant="dark"
+      className="bg-body-dark"
+      expanded={showMenu}
+    >
       <Container>
         <Navbar.Brand href="#">FT</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        {user?._id && <div>Welcome, {user?.name}</div>}
+        <Navbar.Toggle
+          aria-controls="basic-navbar-nav"
+          onClick={() => setShowMenu(!showMenu)}
+        />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             {user?._id ? (
               <>
-                <Link to="/dashboard" className="nav-link">
+                <Link
+                  onClick={() => setShowMenu(false)}
+                  to="/dashboard"
+                  className="nav-link"
+                >
                   <MdDashboard /> Dashboard
                 </Link>
-                <Link to="/transaction" className="nav-link">
+                <Link
+                  onClick={() => setShowMenu(false)}
+                  to="/transaction"
+                  className="nav-link"
+                >
                   <CiBank /> Transaction
                 </Link>
                 <Link onClick={handleOnLogout} to="/" className="nav-link">
@@ -47,10 +63,18 @@ const Header = () => {
               </>
             ) : (
               <>
-                <Link to="/signup" className="nav-link">
+                <Link
+                  onClick={() => setShowMenu(false)}
+                  to="/signup"
+                  className="nav-link"
+                >
                   <IoIosCreate /> Sign Up
                 </Link>
-                <Link to="/" className="nav-link">
+                <Link
+                  onClick={() => setShowMenu(false)}
+                  to="/"
+                  className="nav-link"
+                >
                   <HiOutlineLogin /> Login
                 </Link>
               </>

@@ -4,11 +4,8 @@ import Col from "react-bootstrap/Col";
 import LoginForm from "../components/LoginForm";
 import { BsGraphDownArrow } from "react-icons/bs";
 import { BsGraphUpArrow } from "react-icons/bs";
-import { useUser } from "../context/UserContext";
 
 const Login = () => {
-  // const { user, setUser } = useUser();
-
   return (
     <Container className="p-5">
       <Row className="bg-dark p-5 rounded">

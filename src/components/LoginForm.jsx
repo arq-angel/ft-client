@@ -15,7 +15,6 @@ const initialState = {
 
 const LoginForm = () => {
   const location = useLocation();
-  console.log(location);
   const navigate = useNavigate();
 
   const { user, setUser } = useUser();
@@ -48,8 +47,6 @@ const LoginForm = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(form);
-
     const pendingResponse = loginUser(form);
     toast.promise(pendingResponse, {
       pending: "Please wait...",
@@ -58,7 +55,6 @@ const LoginForm = () => {
     const { status, message, user, accessJWT } = await pendingResponse;
 
     toast[status](message);
-    console.log(user, accessJWT);
     setUser(user);
     localStorage.setItem("accessJWT", accessJWT);
   };
