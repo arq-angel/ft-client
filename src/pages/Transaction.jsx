@@ -4,9 +4,9 @@ import { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import TransactionForm from "../components/TransactionForm";
-import TransactionTable from "../components/TransactionTable";
-import { CustomModal } from "../components/CustomModal";
+import TransactionForm from "../components/TransactionForm.jsx";
+import TransactionTable from "../components/TransactionTable.jsx";
+import { CustomModal } from "../components/CustomModal.jsx";
 
 const Transaction = () => {
   const { getTransactions } = useUser();

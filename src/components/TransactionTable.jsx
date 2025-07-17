@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FaCirclePlus } from "react-icons/fa6";
 import { useEffect, useState } from "react";
-import { deleteTransactions } from "../helpers/axiosHelper";
+import { deleteTransactions } from "../helpers/axiosHelper.js";
 import { toast } from "react-toastify";
 
 const TransactionTable = () => {

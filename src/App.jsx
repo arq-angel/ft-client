@@ -1,15 +1,15 @@
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
-import Dashboard from "./pages/Dashboard";
-import Transaction from "./pages/Transaction";
-import DefaultLayout from "./components/layout/DefaultLayout";
-import Auth from "./auth/Auth";
+import Login from "./pages/Login.jsx";
+import SignUp from "./pages/SignUp.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
+import Transaction from "./pages/Transaction.jsx";
+import DefaultLayout from "./components/layout/DefaultLayout.jsx";
+import Auth from "./auth/Auth.jsx";
 import { useEffect } from "react";
-import { autoLogin } from "./utils/users";
-import { useUser } from "./context/UserContext";
+import { autoLogin } from "./utils/users.js";
+import { useUser } from "./context/UserContext.jsx";
 
 function App() {
   const { user, setUser } = useUser();

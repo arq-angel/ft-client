@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import CustomInput from "./CustomInput";
+import CustomInput from "./CustomInput.jsx";
 import useForm from "../hooks/useForm.js";
 import { postNewTransaction } from "../helpers/axiosHelper.js";
 import { toast } from "react-toastify";

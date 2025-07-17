@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import CustomInput from "./CustomInput";
 import { toast } from "react-toastify";
-import { postNewUser } from "../helpers/axiosHelper";
+import { postNewUser } from "../helpers/axiosHelper.js";
 import useForm from "../hooks/useForm.js";
 import { useState } from "react";
 
